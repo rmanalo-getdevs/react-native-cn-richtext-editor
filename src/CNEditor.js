@@ -223,17 +223,17 @@ export default class CNEditor extends Component {
     });
   };
 
-  applyToolbar = tool => {
+  applyToolbar = (tool, from) => {
     let jsonString = "";
     const { styleList } = this.props;
 
-    if (tool !== "") {
+    if (tool !== "" && from === "color") {
       jsonString = JSON.stringify({
         type: "toolbar",
         command: "color",
         value: styleList[tool].color
       });
-    } else if (tool !== "") {
+    } else if (tool !== "" && from === "background") {
       jsonString = JSON.stringify({
         type: "toolbar",
         command: "highlight",
@@ -243,6 +243,7 @@ export default class CNEditor extends Component {
       jsonString = JSON.stringify({ type: "toolbar", command: tool });
     }
 
+    console.log({ jsonString });
     if (this.webViewRef) {
       this.webViewRef.postMessage(jsonString);
     }
