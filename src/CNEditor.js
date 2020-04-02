@@ -245,15 +245,15 @@ export default class CNEditor extends Component {
         value:  styleList[tool].backgroundColor === '#737373'? '#00000000': styleList[tool].backgroundColor
       });
     } else {
-      if(tool === 'highlight'){
-        jsonString = JSON.stringify({
-          type: "toolbar",
-          command: "highlight",
-          value: '#00000000'
-        });
-      }else{
+      // if(tool === 'highlight'){
+      //   jsonString = JSON.stringify({
+      //     type: "toolbar",
+      //     command: "highlight",
+      //     value: '#00000000'
+      //   });
+     
         jsonString = JSON.stringify({ type: "toolbar", command: tool });
-      }
+      
      
     }
 
