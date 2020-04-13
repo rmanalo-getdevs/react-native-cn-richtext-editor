@@ -364,6 +364,7 @@ export default class CNEditor extends Component {
           onMessage={this.onMessage}
           renderError={error => console.log("error:", error)}
           autoFocus={true}
+          javaScriptEnabledAndroid={true}
         />
       </View>
     );
