@@ -274,6 +274,11 @@ export default class CNEditor extends Component {
 
     console.log({ jsonString }, styleList[tool]);
     if (this.webViewRef) {
+      const jsonStringFocus = JSON.stringify({
+        type: "editor",
+        command: "focus"
+      });
+      this.webViewRef.postMessage(jsonStringFocus);
       this.webViewRef.postMessage(jsonString);
     }
   };
