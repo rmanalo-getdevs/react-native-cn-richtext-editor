@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { WebView } from "react-native-webview";
 import htmlEditor from "./html/editor";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Platform } from "react-native";
 const shortid = require("shortid");
+
+const isIos = Platform.OS === "ios";
 
 export default class CNEditor extends Component {
   constructor(props) {
@@ -218,6 +220,18 @@ export default class CNEditor extends Component {
     if (this.props.editorStyle) this.applyEditorStyle(this.props.editorStyle);
 
     if (this.props.placeholder) this.setPlaceholder(this.props.placeholder);
+
+    const jsonString = JSON.stringify({ type: "editor", command: "focus" });
+
+    if (this.webViewRef) {
+      if (isIos) {
+        this.webViewRef.postMessage(jsonString);
+      } else {
+        setTimeout(() => {
+          this.webViewRef.requestFocus();
+        }, 100);
+      }
+    }
   };
 
   onLayout = event => {
