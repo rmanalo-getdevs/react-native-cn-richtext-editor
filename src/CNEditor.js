@@ -59,7 +59,7 @@ export default class CNEditor extends Component {
           } else if (colorHex == styleList["green"].color) {
             styles.push("green");
           } else if (colorHex == styleList["default"].color) {
-            styles.push('#737373');
+            styles.push("#737373");
           } else {
             const getAllHex = Object.values(styleList).filter(item =>
               item.color.startsWith("#")
@@ -88,9 +88,9 @@ export default class CNEditor extends Component {
             case styleList["purple_hl"].backgroundColor:
               styles.push("purple_hl");
               break;
-              case styleList["default_hl"].backgroundColor:
-                styles.push('default_hl');
-                break;
+            case styleList["default_hl"].backgroundColor:
+              styles.push("default_hl");
+              break;
             default:
               break;
           }
@@ -228,21 +228,24 @@ export default class CNEditor extends Component {
     });
   };
 
-  applyToolbar = (tool,from) => {
+  applyToolbar = (tool, from) => {
     let jsonString = "";
     const { styleList } = this.props;
 
-    if (tool !== "" && from ==='color') {
+    if (tool !== "" && from === "color") {
       jsonString = JSON.stringify({
         type: "toolbar",
         command: "color",
         value: styleList[tool].color
       });
-    } else if (tool !== ""&& from ==='background') {
+    } else if (tool !== "" && from === "background") {
       jsonString = JSON.stringify({
         type: "toolbar",
         command: "highlight",
-        value:  styleList[tool].backgroundColor === '#737373'? '#00000000': styleList[tool].backgroundColor
+        value:
+          styleList[tool].backgroundColor === "#737373"
+            ? "#00000000"
+            : styleList[tool].backgroundColor
       });
     } else {
       // if(tool === 'highlight'){
@@ -251,13 +254,11 @@ export default class CNEditor extends Component {
       //     command: "highlight",
       //     value: '#00000000'
       //   });
-     
-        jsonString = JSON.stringify({ type: "toolbar", command: tool });
-      
-     
+
+      jsonString = JSON.stringify({ type: "toolbar", command: tool });
     }
 
-    console.log({jsonString},styleList[tool])
+    console.log({ jsonString }, styleList[tool]);
     if (this.webViewRef) {
       this.webViewRef.postMessage(jsonString);
     }
@@ -362,6 +363,7 @@ export default class CNEditor extends Component {
           mixedContentMode="always"
           onMessage={this.onMessage}
           renderError={error => console.log("error:", error)}
+          autoFocus={true}
         />
       </View>
     );
