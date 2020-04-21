@@ -222,14 +222,18 @@ export default class CNEditor extends Component {
     if (this.props.placeholder) this.setPlaceholder(this.props.placeholder);
 
     const jsonString = JSON.stringify({ type: "editor", command: "focus" });
+    const origBody = JSON.stringify({ type: "toolbar", command: "body" });
 
     if (this.webViewRef) {
       if (isIos) {
         this.webViewRef.postMessage(jsonString);
+        this.webViewRef.postMessage(jsonString);
+        this.webViewRef.postMessage(origBody);
       } else {
         setTimeout(() => {
           this.webViewRef.requestFocus();
         }, 100);
+        this.webViewRef.postMessage(origBody);
       }
     }
   };
@@ -359,7 +363,7 @@ export default class CNEditor extends Component {
   render() {
     const {
       keyboardDisplayRequiresUserAction = false,
-      customStyles = ""
+      customStyles = "p { display: inline }"
     } = this.props;
     const htmlEditorString = htmlEditor.replace(
       "/* PUT YOUR STYLE HERE */",
