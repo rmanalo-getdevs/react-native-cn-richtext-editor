@@ -714,8 +714,8 @@ class CNTextInput extends Component {
             stype: isPrevHeading === true ? [] : newContent[index].stype,
             styleList: [],
             tag: 'body',
-            text: '\n',
-            NewLine: true,
+            text: ' ',
+            NewLine: false,
           };
           beforeContent.styleList = StyleSheet.flatten(this.convertStyleList(update(beforeContent.stype, { $push: [beforeContent.tag] })));
 

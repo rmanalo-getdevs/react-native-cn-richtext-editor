@@ -348,7 +348,7 @@ class CNRichTextEditor extends Component {
                 {
                   id: shortid.generate(),
                   len: 1,
-                  text: "",
+                  text: " ",
                   tag: "body",
                   stype: [],
                   styleList: [
