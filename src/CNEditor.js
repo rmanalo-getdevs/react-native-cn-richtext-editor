@@ -226,9 +226,11 @@ export default class CNEditor extends Component {
 
     if (this.webViewRef) {
       if (isIos) {
-        this.webViewRef.postMessage(jsonString);
-        this.webViewRef.postMessage(jsonString);
-        this.webViewRef.postMessage(origBody);
+        setTimeout(() => {
+          this.webViewRef.postMessage(jsonString);
+          this.webViewRef.postMessage(jsonString);
+          this.webViewRef.postMessage(origBody);
+        }, 100);
       } else {
         setTimeout(() => {
           this.webViewRef.requestFocus();
