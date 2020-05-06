@@ -234,8 +234,9 @@ export default class CNEditor extends Component {
       } else {
         setTimeout(() => {
           this.webViewRef.requestFocus();
+          this.webViewRef.requestFocus();
+          this.webViewRef.postMessage(origBody);
         }, 100);
-        this.webViewRef.postMessage(origBody);
       }
     }
   };
